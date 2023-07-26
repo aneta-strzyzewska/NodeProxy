@@ -1,13 +1,20 @@
 import express from 'express';
+import axios from 'axios';
 
 const server = express();
-const host: string = '127.0.0.1';
 const port: number = 3000;
+const randomDataUrl = 'https://random-data-api.com/api/v2/addresses'
 
-server.get(host, (req, res) => {
-
+server.get('/', async (req, res) => {
+    const response = await fetchAddressData();
+    res.contentType('application/json')
+    res.end(JSON.stringify(response));
 })
   
 server.listen(port, () => {
     console.log(`Proxy listening on port ${port}`)
 })
+
+async function fetchAddressData() {
+    return (await axios.get(randomDataUrl)).data;
+}
