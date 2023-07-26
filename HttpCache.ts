@@ -21,14 +21,14 @@ export class HttpCache {
     public get(key: string) {
         const data = this.store.get(key);
         if(data && (data?.timestamp + data?.ttl > Date.now())) {
-            return data;
+            return data.data;
         } else {
             this.invalidate(key);
             return undefined;
         }
     }
 
-    private invalidate(key: string) {
+    public invalidate(key: string) {
         this.store.delete(key);
     }
 

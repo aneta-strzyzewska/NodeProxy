@@ -11,7 +11,6 @@ const cache = new HttpCache();
 server.get('/', async (req, res) => {
     let data = cache.get('json');
     if (!data) {
-        console.log('fetching');
         data = await fetchAddressData();
         cache.set('json', data, 60);
     }
