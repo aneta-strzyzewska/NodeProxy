@@ -2,7 +2,7 @@
   "name": "nodeproxy",
   "version": "1.0.0",
   "description": "Simple Node.js proxy application with caching",
-  "main": "dist/app.js",
+  "main": "app.ts",
   "type": "module",
   "scripts": {
     "test": "test"

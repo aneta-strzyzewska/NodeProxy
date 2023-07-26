@@ -1,20 +1,29 @@
 import express from 'express';
 import axios from 'axios';
+import HttpCache from './HttpCache.ts';
 
 const server = express();
 const port: number = 3000;
 const randomDataUrl = 'https://random-data-api.com/api/v2/addresses'
 
+const cache = new HttpCache();
+
 server.get('/', async (req, res) => {
-    const response = await fetchAddressData();
-    res.contentType('application/json')
-    res.end(JSON.stringify(response));
+    let data = cache.get('json');
+    if (!data) {
+        console.log('fetching');
+        data = await fetchAddressData();
+        cache.set('json', data, 60);
+    }
+    
+    res.contentType('application/json');
+    res.status(200).json(data);
 })
   
 server.listen(port, () => {
     console.log(`Proxy listening on port ${port}`)
 })
 
-async function fetchAddressData() {
+const fetchAddressData = async () => {
     return (await axios.get(randomDataUrl)).data;
 }
