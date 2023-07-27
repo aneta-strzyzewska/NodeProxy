@@ -3,7 +3,7 @@ import HttpCache from './HttpCache'
 describe('HttpCache', () => {
 
     const cache = new HttpCache();
-    const delay = ms => new Promise(res => setTimeout(res, ms));
+    const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
 
     it('should return cached value', async () => {
         cache.set("test", { value: "test" }, 5);

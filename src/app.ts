@@ -1,6 +1,6 @@
 import express from 'express';
 import axios from 'axios';
-import HttpCache from './HttpCache.ts';
+import HttpCache from './HttpCache.js';
 
 const server = express();
 const port: number = 3000;

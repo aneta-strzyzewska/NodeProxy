@@ -2,10 +2,12 @@
   "name": "nodeproxy",
   "version": "1.0.0",
   "description": "Simple Node.js proxy application with caching",
-  "main": "app.ts",
+  "main": "dist/app.js",
   "type": "module",
   "scripts": {
-    "test": "jest"
+    "build": "npx tsc",
+    "test": "jest",
+    "start": "npm run build & node dist/app.js"
   },
   "repository": {
     "type": "git",
