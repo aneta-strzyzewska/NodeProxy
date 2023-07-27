@@ -28,7 +28,7 @@ export class HttpCache {
         }
     }
 
-    public invalidate(key: string) {
+    private invalidate(key: string) {
         this.store.delete(key);
     }
 
